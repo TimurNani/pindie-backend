@@ -6,5 +6,29 @@ const sendAllUsers = (req, res) => {
   res.end(JSON.stringify(req.categoriesArray));
 };
 
+const sendUserCreated = (req, res) => { 
+    res.setHeader('Content-Type', 'application/json');
+    // Вернём созданного пользователя в формате JSON
+    res.end(JSON.stringify(req.user));
+}
+
+const sendUserById = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    // Вернём созданного пользователя в формате JSON
+    res.end(JSON.stringify(req.user));
+}
+
+const sendUserUpdated = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    // Вернём созданного пользователя в формате JSON
+    res.status(200).end(JSON.stringify({ message: 'Пользователь обновлён' }));
+}
+
+const sendUserDeleted = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    // Вернём созданного пользователя в формате JSON
+    res.end(JSON.stringify(req.user));
+}
+
 // Экспортируем контроллер
-module.exports = sendAllUsers;
+module.exports = { sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated, sendUserDeleted };
