@@ -89,15 +89,6 @@ const checkIfUsersAreSafe = async (req, res, next) => {
   }
 };
 
-const checkIfCategoriesAvaliable = async (req, res, next) => {
-  // Проверяем наличие жанра у игры
-  if (!req.body.categories || req.body.categories.length === 0) {
-    res.setHeader("Content-Type", "application/json");
-    res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
-  } else {
-    next();
-  }
-};
 
 const checkIsGameExists = async (req, res, next) => {
   const isInArray = req.gamesArray.find((game) => {
@@ -111,14 +102,17 @@ const checkIsGameExists = async (req, res, next) => {
   }
 }; 
 
-const checkEmptyName = async (req, res, next) => {
-  if (!req.body.name) {
+const checkIfCategoriesAvaliable = async (req, res, next) => {
+  // Проверяем наличие жанра у игры
+  if (!req.body.categories || req.body.categories.length === 0) {
     res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Введите название категории" }));
+    res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
   } else {
     next();
   }
-}; 
+};
+
+
 
 // Экспортируем функцию поиска всех игр
-module.exports = { findAllGames, createGame, findGameById, updateGame, deleteGame, checkEmptyFields, checkIfUsersAreSafe, checkIfCategoriesAvaliable, checkIsGameExists, checkEmptyName }; 
+module.exports = { findAllGames, createGame, findGameById, updateGame, deleteGame, checkEmptyFields, checkIfUsersAreSafe, checkIfCategoriesAvaliable, checkIsGameExists }; 

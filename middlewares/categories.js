@@ -72,5 +72,14 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
   }
 };
 
+const checkEmptyName = async (req, res, next) => {
+  if (!req.body.name) {
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Введите название категории" }));
+  } else {
+    next();
+  }
+}; 
+
 // Экспортируем функцию поиска всех категорий
-module.exports = { findAllCategories, createCategory, findCategoryById, updateCategory, deleteCategory, checkIsCategoryExists, checkIfCategoriesAvaliable }; 
+module.exports = { findAllCategories, createCategory, findCategoryById, updateCategory, deleteCategory, checkIsCategoryExists, checkIfCategoriesAvaliable, checkEmptyName }; 

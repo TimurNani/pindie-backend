@@ -3,7 +3,7 @@ const sendAllUsers = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   // Отправим данные в виде JSON-объекта, 
   // которые подготовим в миддлваре findAllCategories
-  res.end(JSON.stringify(req.categoriesArray));
+  res.end(JSON.stringify(req.usersArray));
 };
 
 const sendUserCreated = (req, res) => { 
