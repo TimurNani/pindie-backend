@@ -62,15 +62,7 @@ const checkIsCategoryExists = async (req, res, next) => {
   }
 }; 
 
-const checkIfCategoriesAvaliable = async (req, res, next) => {
-  // Проверяем наличие жанра у игры
-  if (!req.body.categories || req.body.categories.length === 0) {
-    res.setHeader("Content-Type", "application/json");
-    res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
-  } else {
-    next();
-  }
-};
+
 
 const checkEmptyName = async (req, res, next) => {
   if (!req.body.name) {
@@ -82,4 +74,4 @@ const checkEmptyName = async (req, res, next) => {
 }; 
 
 // Экспортируем функцию поиска всех категорий
-module.exports = { findAllCategories, createCategory, findCategoryById, updateCategory, deleteCategory, checkIsCategoryExists, checkIfCategoriesAvaliable, checkEmptyName }; 
+module.exports = { findAllCategories, createCategory, findCategoryById, updateCategory, deleteCategory, checkIsCategoryExists, checkEmptyName }; 

@@ -1,4 +1,17 @@
 const users = require('../models/user');
+const bcrypt = require('bcryptjs');
+
+const hashPassword = async (req, res, next) => {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hash;
+    next();
+} catch (error) {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(400).send(JSON.stringify({ message: 'Error hashing password' }));
+  }
+}
 
 const findAllUsers = async (req, res, next) => {
     // По GET-запросу на эндпоинт /users найдём все документы пользователей
@@ -77,4 +90,4 @@ const checkIsUserExists = async (req, res, next) => {
 }; 
 
 // Экспортируем функцию поиска всех пользователей
-module.exports = { findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, checkIsUserExists };
+module.exports = { hashPassword, findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, checkIsUserExists };
