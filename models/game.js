@@ -25,13 +25,14 @@ const gameSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  categories: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'categoryModel',
-  }],
   users: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'userModel',
+    ref: userModel,
+  }],
+  // Добавляем поле для списка категорий
+  categories: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: categoryModel,
   }],
 });
 
